@@ -1,4 +1,4 @@
-package com.example.bookapplr.adapter;
+package com.example.bookapplr.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,25 +10,44 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bookapplr.R;
+import com.example.bookapplr.Interface.TitleClickListener;
 
 import java.util.ArrayList;
 
 public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.MyViewHolder> {
 
     private Context mcontex;
+    private ArrayList<String> titleList;
+    private TitleClickListener clickListener;
 
-    public TitleAdapter(Context mcontex, ArrayList<String> titleList) {
+    public TitleAdapter(Context mcontex, ArrayList<String> titleList, TitleClickListener clickListener) {
         this.mcontex = mcontex;
         this.titleList = titleList;
+        this.clickListener = clickListener;
     }
 
-    private ArrayList<String> titleList;
+
+
+
+
+
 
     @NonNull
     @Override
     public TitleAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mcontex).inflate(R.layout.title_layout, viewGroup, false);
-        return null;
+        View view = LayoutInflater.from(mcontex).inflate(R.layout.title_layout, null, false);
+
+        final MyViewHolder myViewHolder = new MyViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickListener.onItemClick(v, myViewHolder.getPosition());
+            }
+        });
+
+
+        return myViewHolder;
+
     }
 
     @Override
