@@ -27,11 +27,6 @@ public class TitleAdapter extends RecyclerView.Adapter<TitleAdapter.MyViewHolder
     }
 
 
-
-
-
-
-
     @NonNull
     @Override
     public TitleAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

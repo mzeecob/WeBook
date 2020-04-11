@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -40,12 +41,16 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(mcontex, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
 
+
         TitleAdapter titleAdapter = new TitleAdapter(mcontex, titleList, new TitleClickListener() {
             @Override
             public void onItemClick(View itemview, int position) {
-                Toast.makeText(mcontex, "Title Clicker position" + position,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                intent.putExtra("titles", titleList.get(position));     // pass the book title on the next detail screen --- passed along data
+                startActivity(intent);
             }
         });
+
 
         recyclerView.setAdapter(titleAdapter);
 
